@@ -10,6 +10,7 @@ class Cadence {
         'monthly' => ['cadence_number' => 1, 'cadence_modifier' => '+1 month'],
         'quarterly' => ['cadence_number' => 3, 'cadence_modifier' => '+3 months'],
         'biannual' => ['cadence_number' => 6, 'cadence_modifier' => '+6 months'],
+        'annual' => ['cadence_number' => 12, 'cadence_modifier' => '+1 year']
     ];
     
 

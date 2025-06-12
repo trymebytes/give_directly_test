@@ -52,6 +52,9 @@ class TransferGenerator {
             case 'biannual':
                 Cadence::handleCadence('biannual', $date, $start_day);
                 break;
+            case 'annual':
+                Cadence::handleCadence('annual', $date, $start_day);
+                break;
             default:
                 throw new Exception("Invalid cadence. Use 'weekly' or 'monthly'.");
         }
