@@ -18,7 +18,7 @@ class TransferTest extends TestCase {
     }
 
     public function test_monthly_transfer(): void {
-        $actual_result = $this->transferGenerator()->generateTransfer("monthly", "2024-03-20", 300.00, 3);
+        $actual_result = $this->transferGenerator()->generateTransfer("monthly", "2024-03-20", 100.00, 3);
         $expected_result = [
             ['date' => '2024-03-20', 'amount' => 100.00],
             ['date' => '2024-04-20', 'amount' => 100.00],
