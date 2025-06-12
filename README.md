@@ -23,7 +23,7 @@ The expected out put would be an array ;
 ## Assumptions
 
 In this implementation I have made the following assumptions;
- - For monthly transfers that fall on a day that is non-existent in the month, the last day of that month is used. This means if the first transfer for a monthly cadence was processed on January 30, 2025, the next transfer would be processed on February 28, 2025 just because February 30 does not exist.
+ - For transfers that fall on a day that is non-existent in the month, the last day of that month is used. This means if the first transfer for a monthly cadence was processed on January 30, 2025, the next transfer would be processed on February 28, 2025 just because February 30, 2025 does not exist.
  
 
 ## Requirements
