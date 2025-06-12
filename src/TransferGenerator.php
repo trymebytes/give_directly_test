@@ -16,7 +16,7 @@ class TransferGenerator {
      * @throws Exception If the cadence is invalid
      */
     public function generateTransfer(string $cadence, string $start_date, float $amount, int $count): array{
-        if (!in_array($cadence, ['weekly', 'monthly'])) {
+        if (!in_array($cadence, ['weekly', 'monthly', 'quarterly'])) {
             throw new Exception("Invalid cadence. Use 'weekly' or 'monthly'.");
         }
 
@@ -50,6 +50,9 @@ class TransferGenerator {
             case 'monthly':
                 $this->handleMonthlyCadence($date, $start_day);
                 break;
+            case 'quarterly':
+                $this->handleQuarterlyCadence($date, $start_day);
+                break;
             default:
                 throw new Exception("Invalid cadence. Use 'weekly' or 'monthly'.");
         }
@@ -80,5 +83,32 @@ class TransferGenerator {
             $date->modify('+1 month');
         }
     }
+    /**
+     * Handle the logic for quarterly cadence where transfers
+     *
+     * @param DateTime $date The current date to increment
+     * @param string $start_day The original start day of the start date
+     */
+    private function handleQuarterlyCadence(DateTime $date, string $start_day) {
+        $current_month = (int)$date->format('n');
+        $next_month = $current_month + 3;
+        
+        if ($next_month > 12) {
+            $next_month -= 12;
+        }
+
+        $date->modify('+3 months');
+
+        if( $date->format('n') != $next_month ) {
+            // If the current day is not the start day, set to the start day of the previous month
+            $date->modify('last day of previous month');
+        } 
+
+        // Check if the start day is valid for the new month
+        if( checkdate($date->format('m'), $start_day, $date->format('Y') ) ) {
+            $date->setDate($date->format('Y'), $date->format('m'), $start_day);
+        }
+    }
+    
 }
 

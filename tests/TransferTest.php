@@ -51,5 +51,18 @@ class TransferTest extends TestCase {
         ];
         $this->assertEquals($expected_result, $actual_result);
     }
+
+    public function test_quarterly_transfer(): void {
+        $actual_result = $this->transferGenerator()->generateTransfer("quarterly", "2024-12-31", 100.00, 6);
+        $expected_result = [
+            ['date' => '2024-12-31', 'amount' => 100.00],
+            ['date' => '2025-03-31', 'amount' => 100.00],
+            ['date' => '2025-06-30', 'amount' => 100.00],
+            ['date' => '2025-09-30', 'amount' => 100.00],
+            ['date' => '2025-12-31', 'amount' => 100.00],
+            ['date' => '2026-03-31', 'amount' => 100.00],
+        ];
+        $this->assertEquals($expected_result, $actual_result);
+    }
     
 }
