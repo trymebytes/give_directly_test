@@ -39,24 +39,6 @@ class TransferGenerator {
      * @throws Exception If the cadence is invalid
      */
     private function incrementDate(string $cadence, DateTime $date, string $start_day) {
-        switch ($cadence) {
-            case 'weekly':
-                Cadence::handleCadence('weekly', $date, $start_day);
-                break;
-            case 'monthly':
-                Cadence::handleCadence('monthly', $date, $start_day);
-                break;
-            case 'quarterly':
-                Cadence::handleCadence('quarterly', $date, $start_day);
-                break;
-            case 'biannual':
-                Cadence::handleCadence('biannual', $date, $start_day);
-                break;
-            case 'annual':
-                Cadence::handleCadence('annual', $date, $start_day);
-                break;
-            default:
-                throw new Exception("Invalid cadence. Use 'weekly' or 'monthly'.");
-        }
+        Cadence::handleCadence($cadence, $date, $start_day);
     }
 }
