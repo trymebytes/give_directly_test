@@ -1,11 +1,13 @@
 <?php
+
 namespace GiveDirectly;
 
 use DateTime;
 use Exception;
 use GiveDirectly\Cadence;
 
-class TransferGenerator {
+class TransferGenerator
+{
     /**
      * Generate a series of transfers based on the cadence, start date, amount, and count.
      *
@@ -15,15 +17,16 @@ class TransferGenerator {
      * @param int $count The number of transfers to generate
      * @return array An array of transfers with date and amount
      */
-    public function generateTransfer(string $cadence, string $start_date, float $amount, int $count): array{
+    public function generateTransfer(string $cadence, string $start_date, float $amount, int $count): array
+    {
         $transfers = [];
-        $date = new DateTime($start_date);
+        $date      = new DateTime($start_date);
         $start_day = $date->format('d');
 
         for ($i = 0; $i < $count; $i++) {
             $transfers[] = [
-                'date' => $date->format('Y-m-d'),
-                'amount' => number_format($amount, 2)
+                'date'   => $date->format('Y-m-d'),
+                'amount' => number_format($amount, 2),
             ];
             $this->incrementDate($cadence, $date, $start_day);
         }
@@ -38,7 +41,8 @@ class TransferGenerator {
      * @param string $start_day The original start day of the month
      * @throws Exception If the cadence is invalid
      */
-    private function incrementDate(string $cadence, DateTime $date, string $start_day) {
+    private function incrementDate(string $cadence, DateTime $date, string $start_day)
+    {
         Cadence::handleCadence($cadence, $date, $start_day);
     }
 }
